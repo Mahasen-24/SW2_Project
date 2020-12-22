@@ -10,10 +10,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement (name="notification")
 public class notification {
     private int id;
+    private int num_placeHolder;
     private String content;
     private String subject;
     private String language;
-    private String channels;
     
     
     public void setId(int id)
@@ -47,11 +47,12 @@ public class notification {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-	public String getChannels() {
-		return channels;
+	public int getNum_placeHolder() {
+		return num_placeHolder;
 	}
-	public void setChannels(String channels) {
-		this.channels = channels;
+	public void setNum_placeHolder(int num_placeHolder) {
+		this.num_placeHolder = num_placeHolder;
 	}
+	
     
 }
