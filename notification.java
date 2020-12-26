@@ -1,21 +1,28 @@
+package com.example.demo.model;
 
-package model;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-/**
- *
- * @author pc
- */
-@XmlRootElement (name="notification")
 public class notification {
+
     private int id;
     private int num_placeHolder;
     private String content;
     private String subject;
     private String language;
-    
-    
+
+    public notification(@JsonProperty("id") String id, @JsonProperty("numPH")String num_placeHolder
+            , @JsonProperty("content")String content,@JsonProperty("subject") String subject,
+                        @JsonProperty("language")String language)
+    {
+
+        int x = Integer.parseInt(id);
+        int y = Integer.parseInt(num_placeHolder);
+        this.id=x;
+        this.content=content;
+        this.language=language;
+        this.num_placeHolder=y;
+        this.subject=subject;
+    }
     public void setId(int id)
     {
         this.id=id;
@@ -32,7 +39,7 @@ public class notification {
     {
         return content;
     }
-    
+
     public void setSubject(String sub)
     {
         this.subject=sub;
@@ -41,18 +48,18 @@ public class notification {
     {
         return subject;
     }
-	public String getLanguage() {
-		return language;
-	}
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-	public int getNum_placeHolder() {
-		return num_placeHolder;
-	}
-	public void setNum_placeHolder(int num_placeHolder) {
-		this.num_placeHolder = num_placeHolder;
-	}
-	
-    
+    public String getLanguage() {
+        return language;
+    }
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+    public int getNum_placeHolder() {
+        return num_placeHolder;
+    }
+    public void setNum_placeHolder(int num_placeHolder) {
+        this.num_placeHolder = num_placeHolder;
+    }
+
+
 }
