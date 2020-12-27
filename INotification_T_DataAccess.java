@@ -1,22 +1,18 @@
+package com.example.demo.infrastructure;
 
-package infrastructure;
+import com.example.demo.model.notification;
+import com.example.demo.model.response;
 
-import model.notification;
-import model.response;
+import java.util.List;
+import java.util.Map;
 
-/**
- *
- * @author pc
- */
 public interface INotification_T_DataAccess {
-    
-    public notification ReadNotification(int id);
-    
-    public response CreateNotification(notification n);
-    
-    public response UpdateNotification(int id,notification n);
-    
-    public response deleteNotification(int id);
-    
-    
+    public notification ReadTemplate(int id);
+    public List<notification> ReadALL();
+
+    public response CreateTemplate(notification n);
+
+    public response UpdateTemplate(int id,notification n);
+
+    public response deleteTemplate(int id);
 }

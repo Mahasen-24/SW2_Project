@@ -1,69 +1,86 @@
-package infrastructure;
+package com.example.demo.infrastructure;
 
+import com.example.demo.model.notification;
+import com.example.demo.model.response;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import model.notification;
-import model.response;
 
-
-
+@Repository("DataAccessM")
 public class MemoryNotification_T_DataAccess implements INotification_T_DataAccess{
- 
-	private static Map<Integer,notification> templetes=new HashMap<Integer,notification>();
+    private static List<notification> templetes=new ArrayList<>();
 
-	@Override
-	public notification ReadNotification(int id) {
-		
-		return templetes.get(id);
-	}
+    public  List<notification> ReadALL(){
+        return templetes;
+    }
 
-	@Override
-	public response CreateNotification(notification n) {
-		response r=new response();
-		if(templetes.get(n.getId())!=null)
-		{
-			r.setStatus(false);
-			return r;
-		}
-		else
-		{
-			templetes.put(n.getId(),n);
-			r.setStatus(true);
-			return r;
-		}
-	}
-	
-	@Override
-	public response UpdateNotification(int id,notification n) {
-		response r=new response();
-		if(templetes.get(id)==null)
-		{
-			r.setStatus(false);
-			return r;
-		}
-		else
-		{
-			templetes.put(id,n);
-			r.setStatus(true);
-			return r;
-		}
-	}
+    @Override
+    public notification ReadTemplate(int id) {
+        for(int i=0;i<templetes.size();i++)
+        {
+            if(templetes.get(i).getId()==id)
+            {
+                return templetes.get(i);
+            }
 
-	@Override
-	public response deleteNotification(int id) {
-		response r=new response();
-		if(templetes.get(id)==null)
-		{
-			r.setStatus(false);
-			return r;
-		}
-		else
-		{
-			templetes.remove(id);
-			r.setStatus(true);
-			return r;
-		}
-	}
-	
+        }
+
+        return null;
+    }
+
+    @Override
+    public response CreateTemplate(notification n) {
+        response r=new response();
+        for(int i=0;i<templetes.size();i++)
+        {
+            if(templetes.get(i).getId()==n.getId())
+            {
+                r.setStatus(false);
+                return r;
+            }
+
+        }
+            templetes.add(n);
+            r.setStatus(true);
+            return r;
+    }
+
+    @Override
+    public response UpdateTemplate(int id,notification n) {
+        response r=new response();
+        for(int i=0;i<templetes.size();i++)
+        {
+            if(templetes.get(i).getId()==id)
+            {
+                templetes.set(i,n);
+                r.setStatus(true);
+                return r;
+            }
+
+        }
+            r.setStatus(false);
+            return r;
+
+    }
+
+    @Override
+    public response deleteTemplate(int id) {
+        response r=new response();
+        for(int i=0;i<templetes.size();i++)
+        {
+            if(templetes.get(i).getId()==id)
+            {
+                templetes.remove(i);
+                r.setStatus(true);
+                return r;
+            }
+
+        }
+            r.setStatus(false);
+            return r;
+    }
 
 }
