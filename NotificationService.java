@@ -15,7 +15,7 @@ public class NotificationService {
     private final INotification_T_DataAccess DataAccess;
 
     @Autowired
-    public NotificationService(@Qualifier("DataAccessM") INotification_T_DataAccess DataAccess) {
+    public NotificationService(@Qualifier("DataAccessMYSQL") INotification_T_DataAccess DataAccess) {
         this.DataAccess=DataAccess;
     }
 
