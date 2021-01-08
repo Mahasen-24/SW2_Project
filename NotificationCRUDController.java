@@ -86,22 +86,26 @@ public class NotificationCRUDController {
     {
         return service2.ReadNotificationEMAIL(id);
     }
-    @PutMapping(path = "update/sms/{id2}/{r}/{x}/{y}")
-    public response updateChanalS(@PathVariable("id2") int sms_id,@PathVariable("r") String final_reciever,@PathVariable("x") String x,@PathVariable("y") String y)
+    @PutMapping(path = "update/sms/{id2}/{r}/{x}")
+    public response updateChanalS(@PathVariable("id2") int sms_id,@PathVariable("r") String final_reciever,@PathVariable("x") String x)
 
     {
         ArrayList<String> placeHolders=new ArrayList<>();
-        placeHolders.add(x);
-        placeHolders.add(y);
+        for(String str:x.split(" "))
+        {
+            placeHolders.add(str);
+        }
         return service2.UpdateNotificationSMS(sms_id,final_reciever,placeHolders);
     }
-    @PutMapping(path = "update/email/{id2}/{r}/{x}/{y}")
-    public response updateChanalE(@PathVariable("id2") int sms_id,@PathVariable("r") String final_reciever,@PathVariable("x") String x,@PathVariable("y") String y)
+    @PutMapping(path = "update/email/{id2}/{r}/{x}")
+    public response updateChanalE(@PathVariable("id2") int sms_id,@PathVariable("r") String final_reciever,@PathVariable("x") String x)
 
     {
         ArrayList<String> placeHolders=new ArrayList<>();
-        placeHolders.add(x);
-        placeHolders.add(y);
+        for(String str:x.split(" "))
+        {
+            placeHolders.add(str);
+        }
         return service2.UpdateNotificationEMAIL(sms_id,final_reciever,placeHolders);
     }
 
